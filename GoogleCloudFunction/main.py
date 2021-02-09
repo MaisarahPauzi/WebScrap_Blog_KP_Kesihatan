@@ -8,6 +8,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import requests
 
+# define YOUR_BUCKET_NAME
+YOUR_BUCKET_NAME = 'YOUR_BUCKET_NAME'
 # define month name in bahasa Malaysia
 months_name = {
     1: 'januari',
@@ -67,7 +69,7 @@ def update_death_case(request):
     # generate file
     if selected_table != '':
         storage_client = storage.Client()
-        bucket = storage_client.get_bucket("datacovidscrap")
+        bucket = storage_client.get_bucket(YOUR_BUCKET_NAME)
         my_file = bucket.blob(f'Data kematian covid {day}-{month}-{year}.csv')
         rows = selected_table.findAll('tr')
         filepath = f'/tmp/data kematian covid {day}-{month}-{year}.csv'
